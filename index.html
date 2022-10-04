@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.googleapis.com"> 
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500&display=swap" rel="stylesheet">
+	<title>Smiley-YENA</title>
+	<style type="text/css">
+
+		body{background: black;
+			background-image: url(screenshot.png);
+			background-size: 100%;
+			background-repeat: no-repeat;
+			overflow-x: hidden;
+			overflow-y: hidden;
+
+		}
+		.variousFace{position: absolute;
+				left: 0;
+				top: 0;
+				}
+		#rylicText{ font-family: 'Noto Sans KR', sans-serif;
+				font-size: 40px;
+				color: hotpink;
+				text-align: center;
+				z-index: 100;
+				position: absolute;
+				left: 30%;
+				top: 20%;
+				
+				
+			}
+		.word{background-color: white;
+			animation: fadein 5s forwards;
+			animation-iteration-count: 1;
+			text-align: center;
+		}
+		@keyframes fadein{
+			to{opacity: 1;}
+		
+		}
+		#spaceBarContainer{
+			color: white;
+			background-color: #242424;
+			font-family: 'Noto Sans KR', sans-serif;
+			font-size: 30px;
+			z-index: 100;
+			position: absolute;
+			left: 42.4vw;
+			top: 0.7vh;}
+
+
+	</style>
+</head>
+<body>
+	<div><span id="spaceBarContainer">Press the space bar</span></div>
+ 	<div id="rylicText"></div>
+ 	<audio id="smileySong" src="bibi.mp3" volume="50%"></audio>
+ 
+	<script type="text/javascript">
+
+		window.onkeydown = function(){
+			if(event.keyCode == 32){
+			var g = function(){
+			smileySong.play();}
+
+			var rylic = "yeah, yeah, yeah, yeah, yeah, let's go!<br>비웃을 때 빼고 내 입꼬리는 chillin'<br>나빠야지 살아남지, ugh, 넌 뭐해?<br>귀엽고 예쁘면 장땡이냐 근데?<br>널 보고 있으니까 기분이가 좋네<br>삐뚤어진 성격, 모두 나를 겁내 (ah!)<br>아주 그냥 확! 너는 왜 계속, 웃어?<br>당황하는 틈을 타 날 무장해제<br>친구가 될 수 있을까 우리 둘이?<br>";
+		
+		var rylicArr = rylic.split("<br>");
+
+		
+		var myTimer = setInterval(print,1800);
+		var s = 0;
+		function print(){
+			rylicText.innerHTML += "<span class='word'>" +rylicArr[s] + " </span><br>";
+			s++;
+			if(s == rylicArr.length){
+				clearInterval(myTimer);}
+			} 
+			
+		}}
+	
+
+	
+		
+		var a = ["face 1", "face 2", "face 3"];
+
+		for(var i=0; i<100; i++){
+			
+		var t = document.createElement("img");
+		t.className = "variousFace";
+		t.src = a[randomBH(0,2)] + ".png";
+		t.style.width = randomBH(20, 80) + "px";
+		t.style.height = "auto";
+		t.style.left = Math.random()*screen.availWidth + "px";
+		t.style.top = Math.random()*screen.availHeight + "px";
+		document.body.appendChild(t);
+		
+		}
+
+		function randomBH(min, max){
+		min = Math.ceil(min);
+		max = Math.floor(max);
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
+
+        
+		
+
+
+		
+	</script>
+</body>
+</html>
